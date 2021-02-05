@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazore_Start_bwa_test", "Blazore_Start_bwa\Blazore_Start_bwa\Blazore_Start_bwa_test.csproj", "{D18753CC-D391-49DA-B4F2-68F0A2FC91FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazore_Start_Server", "Blazore_Start_Server\Blazore_Start_Server_Ref\Blazore_Start_Server.csproj", "{181D86E0-FE2A-45C9-84E9-D4A5296CDD3E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D18753CC-D391-49DA-B4F2-68F0A2FC91FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D18753CC-D391-49DA-B4F2-68F0A2FC91FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D18753CC-D391-49DA-B4F2-68F0A2FC91FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D18753CC-D391-49DA-B4F2-68F0A2FC91FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{181D86E0-FE2A-45C9-84E9-D4A5296CDD3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{181D86E0-FE2A-45C9-84E9-D4A5296CDD3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{181D86E0-FE2A-45C9-84E9-D4A5296CDD3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{181D86E0-FE2A-45C9-84E9-D4A5296CDD3E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {551164AD-8068-4A83-83F0-FD99C6406E5D}
+	EndGlobalSection
+EndGlobal

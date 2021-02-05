@@ -1,0 +1,107 @@
+﻿@page "/"
+@using Blazore_Start_bwa_test.Models
+@inject HttpClient Http
+
+<h3>Todo App</h3>
+<EditForm Model="addItem" OnSubmit="AddToDo">
+    <div class="d-flex align-items-center mb-3">
+        <div class="form-group mr-3 mb-0">
+            <InputText @bind-Value="addItem.Title" type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter a task here" />
+        </div>
+        <button type="submit" class="btn btn-primary mr-3">
+            Save
+        </button>
+    </div>
+</EditForm>
+<div class="table-wrapper">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Todo item</th>
+                <th>status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (items == null)
+            {
+                <div class="spinner spinner-success"></div>
+            }
+            else
+            {
+                @foreach (Item item in items)
+                {
+                    <tr class="@(item.Status ? "table-success" : "table-light")">
+                        <td>@(items.IndexOf(item) + 1)</td>
+                        <td class="@(item.Status ? "complete" : "task")">
+                            @item.Title
+                        </td>
+                        <td>@(item.Status ? "Completed" : "In progress" )</td>
+                        <td>
+                            <button class="btn btn-danger" @onclick="()=> Delete(item.Id)">
+                                Delete
+                            </button>
+                            <button class="btn btn-success" @onclick="()=> SetFinsh(item.Id)">
+                                Finished
+                            </button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+@code{
+    Item addItem = new Item();
+    List<Item> items;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetItems();
+    }
+
+    protected async Task AddToDo()
+    {
+        try
+        {
+            await Http.PostAsJsonAsync("https://localhost:44316/items", addItem);
+            await GetItems();
+        }
+        catch
+        {
+
+        }
+    }
+    protected async Task SetFinsh(int id)
+    {
+        try
+        {
+            await Http.PutAsJsonAsync($"https://localhost:44316/items/{id}", new Item());
+            await GetItems();
+        }
+        catch
+        {
+
+        }
+    }
+
+    protected async Task Delete(int id)
+    {
+        try
+        {
+            await Http.DeleteAsync($"https://localhost:44316/items/{id}");
+            await GetItems();
+        }
+        catch
+        {
+
+        }
+    }
+
+    protected async Task GetItems()
+    {
+        items = await Http.GetFromJsonAsync<List<Item>>("https://localhost:44316/items");
+    }
+
+}
