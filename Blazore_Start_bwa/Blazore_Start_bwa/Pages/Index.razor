@@ -1,6 +1,6 @@
 ﻿@page "/"
 @using Blazore_Start_bwa_test.Models
-@inject HttpClient Http
+@inherits IndexBase
 
 <h3>Todo App</h3>
 <EditForm Model="addItem" OnSubmit="AddToDo">
@@ -11,6 +11,7 @@
         <button type="submit" class="btn btn-primary mr-3">
             Save
         </button>
+        <DisplayMessage message=@message messageType=@messageType />
     </div>
 </EditForm>
 <div class="table-wrapper">
@@ -52,56 +53,3 @@
         </tbody>
     </table>
 </div>
-@code{
-    Item addItem = new Item();
-    List<Item> items;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await GetItems();
-    }
-
-    protected async Task AddToDo()
-    {
-        try
-        {
-            await Http.PostAsJsonAsync("https://localhost:44316/items", addItem);
-            await GetItems();
-        }
-        catch
-        {
-
-        }
-    }
-    protected async Task SetFinsh(int id)
-    {
-        try
-        {
-            await Http.PutAsJsonAsync($"https://localhost:44316/items/{id}", new Item());
-            await GetItems();
-        }
-        catch
-        {
-
-        }
-    }
-
-    protected async Task Delete(int id)
-    {
-        try
-        {
-            await Http.DeleteAsync($"https://localhost:44316/items/{id}");
-            await GetItems();
-        }
-        catch
-        {
-
-        }
-    }
-
-    protected async Task GetItems()
-    {
-        items = await Http.GetFromJsonAsync<List<Item>>("https://localhost:44316/items");
-    }
-
-}

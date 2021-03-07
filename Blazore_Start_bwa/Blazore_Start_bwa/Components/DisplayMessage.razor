@@ -1,0 +1,12 @@
+﻿@using Models
+ 
+<span class="badge badge-@(messageType == MessageType.success ? "success" : "danger")">
+    @message
+</span>
+
+@code {
+    [Parameter]
+    public string message { get; set; }
+    [Parameter]
+    public MessageType messageType { get; set; }
+}
